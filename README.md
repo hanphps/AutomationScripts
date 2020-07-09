@@ -1,2 +1,2 @@
 # AutomationScripts
-Python scripts for automation. Currently WIP
+Python scripts for personal computer organization/automation
