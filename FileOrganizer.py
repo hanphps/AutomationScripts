@@ -1,18 +1,16 @@
 import os, shutil
 from pathlib import Path
 
-"""
-    TODO:
-        - Make directories for nulls.
-        - Task scheduler
-        - DONE?
-"""
-
 HOME = str(Path.home())
 DOWNLOADS = Path(HOME+'/Downloads')
 MAIN = Path(HOME+'/Documents/Library')
 
 """
+
+    Runs off Windows Task Scheduler
+
+    TODO: Scheduler within script (standalone)
+
     Rules for moving files
         FRONT takes front part of name and matches it to specific directory with keywords
         END takes end extensions and matches to specific directory
@@ -57,14 +55,24 @@ def checkDestinationExist(name):
     else:
         return False
 
-
+def createDirectory(loc,rule):
+    directory = Path(loc+'/'+rule)
+    try:
+        directory.mkdir()
+        return directory
+    except FileExistsError as error:
+        print(error)   #just in case CDE func doesn't work properly
 
 def mover(file):
     file = str(file)
     directory = detectRule(file)
-    if checkDestinationExist(directory) == True:
-        directory = Path(str(MAIN)+'/'+directory)
-        shutil.move(file,directory)
+    if not(directory is None):
+        if checkDestinationExist(directory) == True:
+            directory = Path(str(MAIN)+'/'+directory)
+            shutil.move(file,directory)
+        else:
+            directory = createDirectory(str(MAIN),directory)
+            shutil.move(file,directory)
     else:
         #Need to throw/catch some stuff
         pass
@@ -81,5 +89,11 @@ def TestCase2():
         mover(f)
 
 
+def main():
+    for f in DOWNLOADS.iterdir():
+        mover(f)
+
 #TestCase1() PASS
 #TestCase2() PASS
+
+main()
