@@ -2,17 +2,17 @@ import os, shutil
 from pathlib import Path
 
 HOME = str(Path.home())
-ORIGIN = Path(HOME+'/Documents/Rust-Plugins/Dev/Rust-Forge/Rust-Forge')
-MAIN = Path('E:/steamcmd/rust/oxide/plugins')
+ORIGIN = Path(HOME+'/Documents/Library')
+MAIN = Path('E:/Library')
 
 USE_RULES = False
-RULES = '.Rust-Forge.Bonfire'
-
+RULES = '.FILE1.FILE2'
+END = ['.cs']
 
 def check(file):
     file = str(file)
     end = file[-3:]
-    if end == '.cs':
+    if end in END:
         if USE_RULES:
             front = file[:-3]
             names = RULES.split('.')
