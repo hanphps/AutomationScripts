@@ -61,7 +61,7 @@ def parseText(tab):
                 counter[word] = 1
     return counter
 
-def Main(file):
+def doit(file):
     tab = readFile(file)
     count = parseText(tab)
     name = str(file)
@@ -69,6 +69,9 @@ def Main(file):
     name = name[:-4]
     createExcel(name,count)
     print('Pass')
-
-Main(Path(str(MAIN)+'/initassessment.pdf'))
+    
+def Main():
+    for f in DOWNLOADS.iterdir():
+        doit(f)
+Main()
 
