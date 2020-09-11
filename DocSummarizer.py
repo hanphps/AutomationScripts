@@ -61,7 +61,7 @@ def parseText(tab):
                 counter[word] = 1
     return counter
 
-def doit(file):
+def summarize(file):
     tab = readFile(file)
     count = parseText(tab)
     name = str(file)
@@ -70,8 +70,8 @@ def doit(file):
     createExcel(name,count)
     print('Pass')
     
-def Main():
+def main():
     for f in DOWNLOADS.iterdir():
-        doit(f)
+        summarize(f)
 Main()
 
