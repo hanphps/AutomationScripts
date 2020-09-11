@@ -73,5 +73,5 @@ def summarize(file):
 def main():
     for f in DOWNLOADS.iterdir():
         summarize(f)
-Main()
+main()
 
