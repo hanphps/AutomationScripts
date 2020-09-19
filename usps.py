@@ -1,7 +1,6 @@
 import json
 import requests
 import xmltodict
-from flatten_dict import flatten
 
 with open("settings.json", "r") as file:
     SETTINGS = json.load(file)
